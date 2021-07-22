@@ -15,21 +15,23 @@ open class BaseFragment : Fragment() {
     private var progressDialog: AlertDialog? = null
 
     fun showLoading() {
-        hideLoading()
-        if (activity != null) {
-            val view = layoutInflater.inflate(R.layout.progress_custom, null, false)
-            val builder =
-                AlertDialog.Builder(requireActivity(), R.style.MyProgressDialogTheme).setView(view)
-            if (activity?.isFinishing == false) {
-                progressDialog = builder.create()
-                progressDialog?.apply {
-                    setCanceledOnTouchOutside(false)
-                    setCancelable(true)
-                    show()
-                    window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    findViewById<ImageView>(R.id.spinnerImageView)?.let {
-                        val spinner = it.background as AnimationDrawable
-                        spinner.start()
+        if (progressDialog == null || progressDialog?.isShowing == false) {
+            if (activity != null) {
+                val view = layoutInflater.inflate(R.layout.progress_custom, null, false)
+                val builder =
+                    AlertDialog.Builder(requireActivity(), R.style.MyProgressDialogTheme)
+                        .setView(view)
+                if (activity?.isFinishing == false) {
+                    progressDialog = builder.create()
+                    progressDialog?.apply {
+                        setCanceledOnTouchOutside(false)
+                        setCancelable(true)
+                        show()
+                        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        findViewById<ImageView>(R.id.spinnerImageView)?.let {
+                            val spinner = it.background as AnimationDrawable
+                            spinner.start()
+                        }
                     }
                 }
             }
@@ -37,7 +39,8 @@ open class BaseFragment : Fragment() {
     }
 
     fun hideLoading() {
-        progressDialog?.dismiss()
+        if (progressDialog?.isShowing == true)
+            progressDialog?.dismiss()
     }
 
     fun removeAllFragmentInBackStack() {

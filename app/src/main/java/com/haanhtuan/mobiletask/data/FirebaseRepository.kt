@@ -14,7 +14,8 @@ import java.util.*
 class FirebaseRepository : RepositoryInterface {
     private val db = Firebase.firestore
     private val items = MutableLiveData<List<Item>>()
-    override fun getAllItems(): LiveData<List<Item>> {
+    override fun getAllItems(): LiveData<List<Item>>? {
+        items.value = null
         db.collection("items")
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
@@ -44,7 +45,7 @@ class FirebaseRepository : RepositoryInterface {
         return text.replaceFirstChar { it.uppercaseChar() }.filter { !it.isWhitespace() }
     }
 
-    override fun addNewItem(newItem: Item): LiveData<Boolean> {
+    override fun addNewItem(newItem: Item): LiveData<Boolean>? {
         val result = MutableLiveData<Boolean>()
         val docData = hashMapOf(
             "email" to newItem.email,

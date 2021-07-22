@@ -85,8 +85,10 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
     private fun getDataForRecyclerView() {
         showLoading()
         homeViewModel?.getListItem()?.observe(viewLifecycleOwner, {
-            hideLoading()
-            it?.let { adapter?.update(it) }
+            it?.let {
+                hideLoading()
+                adapter?.update(it)
+            }
         })
     }
 

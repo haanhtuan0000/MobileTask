@@ -36,36 +36,10 @@ class SharePreferenceUtils constructor(context: Context) {
     fun getBoolean(key: String, defVa: Boolean) = _shareRefs.getBoolean(key, defVa)
 
     @Synchronized
-    fun saveStringWithEncrypt(key: String, value: String) {
-        val editor = _shareRefs.edit()
-        try {
-            editor?.putString(key, AES.encryptAES(value))
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        editor?.apply()
-    }
-
-    @Synchronized
-    fun getStringWithDecrypt(key: String, value: String): String {
-        var decryptedValue = ""
-
-        try {
-            decryptedValue = AES.decryptAES(_shareRefs.getString(key, value)!!)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        return decryptedValue
-    }
-
-    @Synchronized
     fun remove(key: String) {
         val editor = _shareRefs.edit()
         editor?.remove(key)
         editor?.apply()
-
     }
 
     @Synchronized

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "51705015854",
+    "project_id": "mobiletesttask",
+    "storage_bucket": "mobiletesttask.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51705015854:android:3c693e88067d651e3d79bf",
+        "android_client_info": {
+          "package_name": "com.haanhtuan.mobiletask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51705015854-19ha78q78u12av76mv5fhqk0pd21jkq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrK73QoJYxU5kRSCVrMWyF527nGzRMp3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51705015854-19ha78q78u12av76mv5fhqk0pd21jkq9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
